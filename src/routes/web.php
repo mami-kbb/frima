@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +15,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [ItemController::class. 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
+Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', [ItemController::class, 'index']);
+    Route::get('/mypage',[AuthController::class, 'index']);
+    Route::get('/mypage/profile',[AuthController::class, 'edit']);
 });
