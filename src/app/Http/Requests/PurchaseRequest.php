@@ -32,7 +32,8 @@ class PurchaseRequest extends FormRequest
     public function massages()
     {
         return [
-
+            'payment.required' => '支払い方法を選択してください',
+            'address.required' => '配送先を指定してください',
         ];
     }
 }

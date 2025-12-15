@@ -77,9 +77,10 @@ return [
     'home' => RouteServiceProvider::HOME,
 
     'redirects' => [
-    'login' => '/',
-    'register' => '/mypage/profile',
-],
+        'login' => '/',
+        'register' => '/mypage/profile',
+        'logout' => '/login',
+    ],
     /*
     |--------------------------------------------------------------------------
     | Fortify Routes Prefix / Subdomain

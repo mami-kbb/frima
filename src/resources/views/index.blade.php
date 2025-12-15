@@ -13,8 +13,24 @@
 @endsection
 
 @section('content')
-<div class="product-content">
-    <p>商品一覧</p>
-</div>
+<div class="index-content">
+    <div class="tabs">
+        <a href="/" class="{{ $tab == 'recommend' ? 'active' : '' }}">おすすめ</a>
+        <a href="/?tab=mylist" class="{{ $tab == 'mylist' ? 'active' : '' }}">マイリスト</a>
+    </div>
 
+    <div class="item-list">
+        @foreach ($items as $item)
+        <a href="/item/{{ $item->id }}" class="item-card">
+            <div class="image-wrapper">
+                <img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->name }}" class="item-image">
+                @if ($item->is_sold)
+                <span class="sold-label">sold</span>
+                @endif
+            </div>
+            <p class="item-name">{{ $item->name }}</p>
+        </a>
+        @endforeach
+    </div>
+</div>
 @endsection

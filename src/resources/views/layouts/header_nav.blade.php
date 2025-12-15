@@ -4,10 +4,10 @@
             @if (Auth::check())
             <form action="/logout" class="header-nav__form" method="post">
                 @csrf
-                <button class="header-nav__logout-btn">ログアウト</button>
+                <button class="header-nav__btn">ログアウト</button>
             </form>
             @else
-            <a href="/login" class="header-nav__login-btn">ログイン</a>
+            <a href="/login" class="header-nav__btn">ログイン</a>
             @endif
         </li>
         <li class="header-nav__item">

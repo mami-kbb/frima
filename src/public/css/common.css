@@ -5,7 +5,8 @@
 }
 
 body {
-    width: 100vw;
+    max-width: 1400px;
+    width: 100%;
     height: 100vh;
     background-color: #fff;
 }
@@ -18,83 +19,70 @@ html, body {
 .header {
     width: 100%;
     height: 80px;
-    margin: 0;
     background-color: #000;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .header__heading {
-    width: 370px;
-    height: 36px;
-    margin: 22px 25px;
+    margin: 0;
+    margin-right: 40px;
 }
 
 .header__search {
-    width: 563px;
-    height: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
 }
 
-.search-bar {
-    margin: 0;
-    padding: 0;
+.search-form {
+    width: 100%;
+    max-width: 500px;
 }
 
 .search-form input {
-    margin: 15px auto;
     padding: 5px 30px;
-    width: 500px;
+    width: 100%;
     height: 50px;
-    background-color: #fff;
     border-radius: 5px;
-
+    border: none;
+    box-sizing: border-box;
+    margin: 0 30px;
 }
 
 .header__nav {
-    width: 463px;
-    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 .header-nav {
-    margin: 0;
-    padding: 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
-.header-nav__form {
-    margin: 0;
-    padding: 0;
-}
-
-.header-nav__logout-btn {
-    margin-top: 18px;
+.header-nav__btn {
     color: #fff;
+    font-weight: 400;
     text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-}
-
-.header-nav__login-btn {
-    margin-top: 18px;
-    color: #fff;
-    text-decoration: none;
-    text-align: center;
+    background: none;
+    border: none;
     cursor: pointer;
 }
 
 .sell-btn {
-    margin-top: 18px;
-    margin-left: 20px;
     width: 100px;
-    height: 50px;
-    text-decoration: none;
+    padding: 10px 0;
     border-radius: 4px;
     background-color: #fff;
+    text-decoration: none;
     text-align: center;
     cursor: pointer;
+    font-weight: 400;
+    display: inline-block;
 }
 
 .content {
