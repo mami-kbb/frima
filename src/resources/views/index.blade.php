@@ -15,8 +15,8 @@
 @section('content')
 <div class="index-content">
     <div class="tabs">
-        <a href="/" class="{{ $tab == 'recommend' ? 'active' : '' }}">おすすめ</a>
-        <a href="/?tab=mylist" class="{{ $tab == 'mylist' ? 'active' : '' }}">マイリスト</a>
+        <a href="/?tab=recommend&keyword={{ request('keyword') }}" class="{{ $tab === 'recommend' ? 'active' : '' }}">おすすめ</a>
+        <a href="/?tab=mylist&keyword={{ request('keyword') }}" class="{{ $tab == 'mylist' ? 'active' : '' }}">マイリスト</a>
     </div>
 
     <div class="item-list">

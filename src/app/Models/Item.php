@@ -48,4 +48,5 @@ class Item extends Model
     {
         return $this->hasMany(Order::class);
     }
+
 }

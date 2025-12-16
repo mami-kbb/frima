@@ -16,6 +16,7 @@ class ItemController extends Controller
     public function index(Request $request)
     {
         $tab = $request->get('tab', 'recommend');
+        $keyword = $request->get('keyword');
 
         if ($tab === 'recommend') {
             $query = Item::query()->orderBy('created_at', 'desc');
@@ -24,7 +25,11 @@ class ItemController extends Controller
                 $query->where('user_id', '!=', auth()->id());
             }
 
-            $items = $query->paginate(20);
+            if (!empty($keyword)) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+            }
+
+            $items = $query->paginate(20)->withQueryString();
         }
 
         if ($tab === 'mylist') {
@@ -32,13 +37,29 @@ class ItemController extends Controller
                 return redirect('/login');
             }
 
-            $items = auth()->user()->likedItems()
+            $query = auth()->user()->likedItems()
             ->where('items.user_id', '!=', auth()->id())
-            ->orderBy('likes.created_at', 'desc')
-            ->get();
+            ->orderBy('likes.created_at', 'desc');
+
+            if (!empty($keyword)) {
+                $query->where('items.name', 'LIKE', '%' . $keyword . '%');
+            }
+
+            $items = $query->get();
         }
 
-        return view('index', compact('items', 'tab'));
+        return view('index', compact('items', 'tab', 'keyword'));
+    }
+
+    public function search(Request $request)
+    {
+        $item = Item::where('name', 'LIKE',"%{$request->keyword}%")->first();
+
+        $param = [
+            'keyword' => $request->keyword,
+            'item' => $item
+        ];
+        return view('index', $param);
     }
 
     public function show($item_id)
