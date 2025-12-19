@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Order;
 use App\Http\Requests\AddressRequest;
+use App\Http\Requests\ProfileRequest;
 
 class PurchaseController extends Controller
 {
@@ -13,30 +14,29 @@ class PurchaseController extends Controller
     {
         $profile = auth()->user()->profile;
 
-        $address = session('purchase_address', [
-            'postal_code' => $profile->postal_code,
-            'address' => $profile->address,
-            'building' => $profile->building,
-        ]);
+        $address = (object) session('purchase_address', [
+                'postal_code' => $profile->postal_code,
+                'address' => $profile->address,
+                'building' => $profile->building,
+            ]);
 
-        $payment_method = $request->payment_method ?? 'convenience';
+        $payment_method = session('payment_method', 'convenience');
 
         return view('purchase', compact('item', 'address', 'payment_method'));
     }
 
     public function editAddress(Item $item)
     {
-        $profile = auth()->user()->profile;
+        $profile = session('purchase_address') ?? auth()->user()->profile;
 
-        return view('auth.address', compact('profile'));
+        return view('auth.address', compact('item', 'profile'));
     }
 
     public function updateAddress(AddressRequest $request, Item $item)
     {
-        $validated = $request->validated();
-
         session([
-            'purchase_address' => $validated
+            'purchase_address' => $request->validated(),
+            'payment_method' => $request->payment_method ?? session('payment_method', 'convenience'),
         ]);
 
         return redirect("/purchase/{$item->id}");
@@ -44,7 +44,7 @@ class PurchaseController extends Controller
 
     public function store(Request $request, Item $item)
     {
-        $address = session('purchase_address') ?? auth()->user()->profile;
+        $address = session('purchase_address') ?? auth()->user()->profile->only(['postal_code', 'address', 'building']);
 
         $order = Order::create([
             'item_id' => $item->id,
@@ -52,7 +52,7 @@ class PurchaseController extends Controller
             'postal_code' => $address['postal_code'],
             'address' => $address['address'],
             'building' => $address['building'],
-            'payment_method' => $request->payment_method,
+            'payment_method' => $request->payment_method ?? 'convenience',
             'total_price' => $item->price,
         ]);
 

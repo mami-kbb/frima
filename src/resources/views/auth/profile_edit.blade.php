@@ -24,7 +24,7 @@
             <div class="image_output" id="list">
                 @if ($profile && $profile->profile_image)
                 <img src="{{ asset('storage/' . $profile->profile_image) }}" class="reader_image">
-            @endif
+                @endif
             </div>
             <label for="profile_image" class="image-label">画像を選択する</label>
             <input type="file" id="profile_image" class="image" name="profile_image" hidden>

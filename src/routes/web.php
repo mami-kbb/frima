@@ -28,7 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/item/{id}/like', [ItemController::class, 'toggle']);
     Route::post('/item/{id}/comment', [ItemController::class, 'commentStore']);
     Route::get('/purchase/{item}', [PurchaseController::class, 'show']);
-    Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress']);
-    Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress']);
+    Route::get('/purchase/address/{item}', [PurchaseController::class, 'editAddress']);
+    Route::post('/purchase/address/{item}', [PurchaseController::class, 'updateAddress']);
     Route::post('/purchase/{item}', [PurchaseController::class, 'store']);
+    Route::get('/sell', [ItemController::class, 'sellIndex']);
+    Route::post('/sell', [ItemController::class, 'sellStore']);
 });

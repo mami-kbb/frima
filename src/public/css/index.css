@@ -36,6 +36,8 @@
 
 .item-card {
     width: 290px;
+    height: 320px;
+    padding-bottom: 10px;
     text-decoration: none;
     display: block;
 }

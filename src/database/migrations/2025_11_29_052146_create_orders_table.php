@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('postal_code');
             $table->string('address');
             $table->string('building')->nullable();
-            $table->tinyInteger('payment_method');
+            $table->string('payment_method');
             $table->integer('total_price');
             $table->timestamps();
         });

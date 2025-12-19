@@ -115,4 +115,18 @@ class ItemController extends Controller
 
         return back();
     }
+
+    public function sellIndex()
+    {
+        if (! auth()->check()) {
+            return redirect('/login');
+        }
+
+        return view('sell');
+    }
+
+    public function sellStore(ExhibitionRequest $request)
+    {
+        
+    }
 }
