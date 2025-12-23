@@ -122,11 +122,28 @@ class ItemController extends Controller
             return redirect('/login');
         }
 
-        return view('sell');
+        $categories = Category::all();
+        $conditions = Condition::all();
+
+        return view('sell', compact('categories', 'conditions'));
     }
 
     public function sellStore(ExhibitionRequest $request)
     {
-        
+        $path = $request->file('item_image')->store('images', 'public');
+
+        $item = Item::create([
+            'user_id' => auth()->id(),
+            'image' => $path,
+            'condition_id' => $request->condition_id,
+            'name' => $request->name,
+            'brand_name' => $request->brand_name,
+            'description' => $request->description,
+            'price' => $request->price,
+        ]);
+
+        $item->categories()->sync($request->category_item);
+
+        return redirect('/mypage');
     }
 }

@@ -35,7 +35,7 @@
         <a href="/item/{{ $item->id }}" class="item-card">
             <div class="image-wrapper">
                 <img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->name }}" class="item-image">
-                @if ($item->is_sold)
+                @if ($item->status)
                 <span class="sold-label">sold</span>
                 @endif
             </div>

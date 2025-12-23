@@ -36,7 +36,6 @@ class PurchaseController extends Controller
     {
         session([
             'purchase_address' => $request->validated(),
-            'payment_method' => $request->payment_method ?? session('payment_method', 'convenience'),
         ]);
 
         return redirect("/purchase/{$item->id}");
@@ -56,7 +55,7 @@ class PurchaseController extends Controller
             'total_price' => $item->price,
         ]);
 
-        $item->update(['sold' => 1]);
+        $item->update(['status' => 1]);
 
         return redirect('/');
     }

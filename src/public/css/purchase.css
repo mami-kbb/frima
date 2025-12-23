@@ -73,17 +73,18 @@
     border-radius: 5px;
     background: #fff;
     font-size: 16px;
+    color: #5F5F5F;
+    position: relative;
 }
 
-.arrow {
+.selected::after {
+    content: "▼";
     position: absolute;
     right: 12px;
     top: 50%;
-    width: 8px;
-    height: 8px;
-    border-right: 2px solid #5F5F5F;
-    border-bottom: 2px solid #5F5F5F;
-    transform: translateY(-50%) rotate(45deg);
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #5F5F5F;
 }
 
 .options {
@@ -91,7 +92,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 269px;
+    width: 100%;
     background: #636769;
     border: 1.5px solid #B1B1B1;
     border-radius: 5px;
@@ -107,23 +108,32 @@
     font-size: 12px;
     position: relative;
     cursor: pointer;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .options li::before {
     content: "✓";
     position: absolute;
-    left: 12px;
-    opacity: 0;
-}
-
-.options li:hover {
-    width: 83%;
+    left: 50%;
+    top: 50%;
+    width: calc(100% - 13px);
+    height: calc(100% - 6px);
     border-radius: 5px;
     background-color: #5599EB;
     color: #EAEAEA;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: -1;
 }
 
 .options li:hover::before {
+    opacity: 1;
+}
+
+.options li.selected::before {
     opacity: 1;
 }
 

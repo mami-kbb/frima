@@ -28,7 +28,6 @@
                 <p class="payment-title">支払い方法</p>
                 <div class="custom-select" id="paymentSelect">
                     <div class="selected" id="selectedPayment">選択してください</div>
-                    <div class="arrow"></div>
                     <ul class="options">
                         <li data-value="convenience">コンビニ支払い</li>
                         <li data-value="card">カード支払い</li>

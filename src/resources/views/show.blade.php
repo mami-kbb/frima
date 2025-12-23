@@ -16,6 +16,9 @@
 <div class="show-content">
     <div class="image-area">
         <img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->name }}">
+        @if ($item->status)
+        <span class="sold-label">sold</span>
+        @endif
     </div>
     <div class="description-area">
         <div class="item-title">

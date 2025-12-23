@@ -10,6 +10,7 @@
     flex: 1;
     max-width: 690px;
     margin: 0 auto;
+    position: relative;
 }
 
 .description-area {
@@ -33,6 +34,17 @@
     background-color: #D9D9D9;
     border-radius: 4px;
     object-fit: cover;
+}
+
+.sold-label {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    background-color: rgba(247, 72, 72, 0.7);
+    color: #fff;
+    padding: 4px 15px;
+    border-radius: 3px;
+    font-size: 24px;
 }
 
 .item-title__name h3 {
@@ -72,7 +84,7 @@
     width: 40px;
     height: 40px;
     margin: 0 auto;
-    border: none;
+    cursor: pointer;
 }
 .like-count, .comment-count {
     margin: 0 auto;
@@ -120,7 +132,7 @@
     border-collapse: collapse;
 }
 .table-row {
-    margin-top: 10px;
+    margin: 50px 0;
 }
 
 .table-header {
@@ -131,14 +143,16 @@
 }
 
 .item-category {
-    margin-right: 5px;
+    display: inline-block;
+    margin-right: 8px;
     height: 30px;
     padding: 5px 10px;
     font-size: 20px;
     border: none;
-    border-radius: 15px;
+    border-radius: 30px;
     background-color: #D9D9D9;
     text-align: center;
+    align-items: center;
 }
 
 .item-condition {
