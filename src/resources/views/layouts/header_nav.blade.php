@@ -1,5 +1,5 @@
 <nav>
-    <ul class="header-nav">
+    <ul class="header-nav__content">
         <li class="header-nav__item">
             @if (Auth::check())
             <form action="/logout" class="header-nav__form" method="post">

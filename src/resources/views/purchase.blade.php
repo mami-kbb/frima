@@ -21,7 +21,7 @@
                 <img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->name }}" class="item-img">
                 <div class="item-description">
                     <p class="item-name">{{ $item->name }}</p>
-                    <p class="item-price"><span>&yen;</span>{{ $item->price }}</p>
+                    <p class="item-price"><span>&yen;</span>{{ number_format($item->price) }}</p>
                 </div>
             </div>
             <div class="payment-group">
@@ -49,7 +49,7 @@
             <div class="purchase-info">
                 <div class="price">
                     <p>商品代金</p>
-                    <p>&yen;<span>{{ $item->price }}</span></p>
+                    <p>&yen;<span>{{ number_format($item->price) }}</span></p>
                 </div>
                 <div class="payment">
                     <p>支払い方法</p>

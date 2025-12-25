@@ -57,6 +57,8 @@ class AuthController extends Controller
 
         $user = Auth::user();
 
+        $isFirstTime = !$user->profile()->exists();
+
         $profile = $user->profile()->firstOrNew([]);
 
         if ($request->hasFile('profile_image')) {
@@ -70,22 +72,12 @@ class AuthController extends Controller
         $profile->postal_code = $request->postal_code;
         $profile->address = $request->address;
         $profile->building = $request->building;
-
         $profile->save();
 
-        return redirect('/mypage');
-    }
-
-    public function login(LoginRequest $request)
-    {
-        $credentials = $request->only('email', 'password');
-
-        if (!Auth::attempt($credentials)) {
-            return back()->withErrors([
-                'login' => 'ログイン情報が登録されていません',
-            ])->withInput();
+        if ($isFirstTime) {
+            return redirect('/');
         }
 
-        return redirect()->rote('dashboard');
+        return redirect('/mypage');
     }
 }

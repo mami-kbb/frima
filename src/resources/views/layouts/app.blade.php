@@ -12,12 +12,14 @@
 
 <body>
     <header class="header">
-        <h1 class="header__heading"><img src="{{ asset('/images/coachtech_header_logo.png') }}" alt="ヘッダーロゴ"></h1>
-        <div class="header__search">
-            @yield('search')
-        </div>
-        <div class="header__nav">
-            @yield('nav')
+        <div class="header-inner">
+            <h1 class="header__heading"><img src="{{ asset('/images/coachtech_header_logo.png') }}" alt="ヘッダーロゴ"></h1>
+            <div class="header__search">
+                @yield('search')
+            </div>
+            <div class="header__nav">
+                @yield('nav')
+            </div>
         </div>
     </header>
     <div class="content">

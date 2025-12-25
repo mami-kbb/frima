@@ -27,7 +27,7 @@
                 <p class="item-brand">{{ $item->brand_name }}</p>
             </div>
 
-            <p class="item-price">&yen;<span>{{ $item->price }}</span>(税込)</p>
+            <p class="item-price">&yen;<span>{{ number_format($item->price) }}</span>(税込)</p>
 
             <div class="item-action">
                 <div class="item-liked">
@@ -58,7 +58,7 @@
 
         <div class="item-description">
             <h4>商品説明</h4>
-            <p class="description-area">{{ $item->description }}</p>
+            <p class="description">{{ $item->description }}</p>
         </div>
         <div class="item-info">
             <h4>商品の情報</h4>
@@ -81,8 +81,13 @@
             <div class="item-comment__list">
                 @foreach ($item->comments as $comment)
                 <div class="comment-item">
-                    <p class="comment-user">{{ $comment->user->name }}</p>
-                    <p class="comment-body">{{ $comment->comment }}</p>
+                    <div class="comment-user-content">
+                        <img src="{{ asset('storage/'.$comment->user->profile->profile_image) }}" alt="ユーザーアイコン">
+                        <p class="comment-user">{{ $comment->user->name }}</p>
+                    </div>
+                    <div class="comment-body">
+                        {{ $comment->comment }}
+                    </div>
                 </div>
                 @endforeach
             </div>
