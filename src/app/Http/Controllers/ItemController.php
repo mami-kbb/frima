@@ -29,7 +29,7 @@ class ItemController extends Controller
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
             }
 
-            $items = $query->paginate(20)->withQueryString();
+            $items = $query->get();
         }
 
         if ($tab === 'mylist') {

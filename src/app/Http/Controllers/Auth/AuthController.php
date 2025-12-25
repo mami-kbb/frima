@@ -31,7 +31,7 @@ class AuthController extends Controller
                 $query->where('user_id', auth()->id());
             }
 
-            $items = $query->paginate(20);
+            $items = $query->get();
         }
 
         if ($tab === 'buy') {
