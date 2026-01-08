@@ -33,6 +33,7 @@ DB_PASSWORD=laravel_pass
 2. .env.testing ファイルの一部を以下のように編集
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ demo_test は事前に MySQL 上で空のデータベースを作成してください
+（`CREATE DATABASE demo_test;` で作成できます）
 
 ```
 APP_ENV=test
@@ -58,10 +59,17 @@ DB_PASSWORD=root
 - PHP 8.1-fpm
 - Laravel 8
 
-## URL
+## 開発環境
 
-- 環境開発: http://localhost/login
+- ログイン画面: http://localhost/login
+- 会員登録画面: http://localhost/register
+- 商品一覧画面: http://localhost/
 - phpMyAdmin: http://localhost:8080/
 
 ## ER 図
 ![image](er.png)
+
+## 追記事項
+
+- マイページに表示される商品も商品詳細画面を開けるようになっています。
+- それに伴い、商品詳細画面（ show.blade.php ）では自分が出品した商品と購入済み商品は購入ボタンが表示されないようにしました。

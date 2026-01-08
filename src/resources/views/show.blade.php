@@ -52,9 +52,11 @@
             </div>
         </div>
 
+        @if (!$item->status && auth()->id() !== $item->user_id)
         <form action="/purchase/{{ $item->id }}" class="purchase-form" method="get">
             <button class="purchase-btn">購入手続きへ</button>
         </form>
+        @endif
 
         <div class="item-description">
             <h4>商品説明</h4>

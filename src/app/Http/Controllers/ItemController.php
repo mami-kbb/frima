@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ExhibitionRequest;
 use App\Models\Item;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Like;
 use App\Models\Comment;
-use App\Http\Requests\CommentRequest;
 
 class ItemController extends Controller
 {

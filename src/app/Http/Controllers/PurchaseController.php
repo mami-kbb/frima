@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Order;
 use App\Http\Requests\AddressRequest;
-use App\Http\Requests\ProfileRequest;
 
 class PurchaseController extends Controller
 {
