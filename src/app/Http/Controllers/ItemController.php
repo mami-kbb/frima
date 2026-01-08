@@ -30,22 +30,20 @@ class ItemController extends Controller
             }
 
             $items = $query->get();
-        }
-
-        if ($tab === 'mylist') {
+        } elseif ($tab === 'mylist') {
             if (! auth()->check()) {
-                return redirect('/login');
+                $items = collect();
+            } else {
+                $query = auth()->user()->likedItems()
+                ->where('items.user_id', '!=', auth()->id())
+                ->orderBy('likes.created_at', 'desc');
+
+                if (!empty($keyword)) {
+                    $query->where('items.name', 'LIKE', '%' . $keyword . '%');
+                }
+
+                $items = $query->get();
             }
-
-            $query = auth()->user()->likedItems()
-            ->where('items.user_id', '!=', auth()->id())
-            ->orderBy('likes.created_at', 'desc');
-
-            if (!empty($keyword)) {
-                $query->where('items.name', 'LIKE', '%' . $keyword . '%');
-            }
-
-            $items = $query->get();
         }
 
         return view('index', compact('items', 'tab', 'keyword'));

@@ -73,8 +73,7 @@ if (initialPayment) {
         `.options li[data-value="${initialPayment}"]`
     );
     if (option) {
-        document.getElementById('selectedPayment').innerText = option.textContent;
-        document.getElementById('payment_method').value = initialPayment;
+        hiddenInput.value = initialPayment;
         document.getElementById('payment_display').innerText = option.textContent;
     }
 }

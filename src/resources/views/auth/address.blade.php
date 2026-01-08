@@ -22,7 +22,7 @@
             @csrf
             <div class="form-group">
                 <label class="item-label" for="postal-code">郵便番号</label>
-                <input type="text" class="form-input" name="postal_code" value="{{ old('postal_code', $profile['postal_code'] ?? $profile->postal_code) }}">
+                <input type="text" class="form-input" name="postal_code" value="{{ old('postal_code', $profile->postal_code) }}">
                 <div class="form__error">
                     @error('postal_code')
                     {{ $message }}
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label class="item-label" for="address">住所</label>
-                <input type="text" class="form-input" name="address" value="{{ old('address', $profile['address'] ?? $profile->address) }}">
+                <input type="text" class="form-input" name="address" value="{{ old('address', $profile->address) }}">
                 <div class="form__error">
                     @error('address')
                     {{ $message }}
@@ -40,7 +40,7 @@
             </div>
             <div class="form-group">
                 <label class="item-label" for="building">建物名</label>
-                <input type="text" class="form-input" name="building" value="{{ old('building', $profile['building'] ?? $profile->building) }}">
+                <input type="text" class="form-input" name="building" value="{{ old('building', $profile->building) }}">
             </div>
             <div class="form-btm">
                 <button class="form-btn-submit">更新する</button>

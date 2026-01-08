@@ -41,13 +41,13 @@
                             @endif
                         </button>
                     </form>
-                    <p class="like-count">{{ $likesCount }}</p>
+                    <p class="like-count" data-testid="like-count">{{ $likesCount }}</p>
                 </div>
                 <div class="item-comments">
                     <p class="comment-icon">
                         <img src="{{ asset('/images/comment_logo.png') }}" alt="ふきだしロゴ">
                     </p>
-                    <p class="comment-count">{{ $item->comments->count() }}</p>
+                    <p class="comment-count" data-testid="comment-count">{{ $item->comments->count() }}</p>
                 </div>
             </div>
         </div>

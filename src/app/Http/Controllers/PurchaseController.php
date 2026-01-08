@@ -27,7 +27,11 @@ class PurchaseController extends Controller
 
     public function editAddress(Item $item)
     {
-        $profile = session('purchase_address') ?? auth()->user()->profile;
+        if (session()->has('purchase_address')) {
+            $profile = (object) session('purchase_address');
+        } else {
+            $profile = auth()->user()->profile;
+        }
 
         return view('auth.address', compact('item', 'profile'));
     }
@@ -43,7 +47,15 @@ class PurchaseController extends Controller
 
     public function store(Request $request, Item $item)
     {
-        $address = session('purchase_address') ?? auth()->user()->profile->only(['postal_code', 'address', 'building']);
+        if (session()->has('purchase_address')) {
+            $address = session('purchase_address'); // 配列
+        } else {
+            $address = auth()->user()->profile->only([
+                'postal_code',
+                'address',
+                'building'
+            ]);
+        }
 
         $order = Order::create([
             'item_id' => $item->id,
@@ -56,6 +68,8 @@ class PurchaseController extends Controller
         ]);
 
         $item->update(['status' => 1]);
+
+        session()->forget('purchase_address');
 
         return redirect('/');
     }

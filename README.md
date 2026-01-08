@@ -7,15 +7,14 @@
 1. git clone git@github.com:mami-kbb/frima.git
 2. docker-compose up -d --build
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※MySQL は、OS によって起動しない場合があるのでそれぞれの PC に合わせて docker-compose.yml ファイルを編集してください。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ OS 環境によって MySQL コンテナが起動しない場合があります。その場合は docker-compose.yml を各自の環境に合わせて調整してください。
 
 ### Laravel 環境構築
 
 1. docker-compose exec php bash
 2. composer install
-3. composer require livewire/livewire
-4. cp .env.example .env
-5. .env ファイルの一部を以下のように編集
+3. cp .env.example .env
+4. .env ファイルの一部を以下のように編集
 
 ```
 DB_HOST=mysql
@@ -24,9 +23,34 @@ DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 ```
 
-6. php artisan key:generate
-7. php artisan migrate
-8. php artisan db:seed
+5. php artisan key:generate
+6. php artisan migrate
+7. php artisan db:seed
+
+## テスト環境構築
+
+1. cp .env.example .env.testing
+2. .env.testing ファイルの一部を以下のように編集
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ demo_test は事前に MySQL 上で空のデータベースを作成してください
+
+```
+APP_ENV=test
+DB_CONNECTION=mysql_test
+DB_HOST=mysql
+DB_DATABASE=demo_test
+DB_USERNAME=root
+DB_PASSWORD=root
+```
+
+3. php artisan key:generate --env=testing
+4. php artisan migrate --env=testing
+5. php artisan test
+
+## user のログイン用初期データ
+
+- メールアドレス: hoge@example.com
+- パスワード: hoge1234
 
 ## 使用技術
 
