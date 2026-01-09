@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PurchaseController;
 
 /*
@@ -18,8 +17,6 @@ use App\Http\Controllers\PurchaseController;
 */
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item_id}', [ItemController::class, 'show']);
-
-Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
 Route::middleware('auth')->group(function () {
     Route::get('/mypage', [AuthController::class, 'index']);
