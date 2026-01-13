@@ -74,3 +74,4 @@ DB_PASSWORD=root
 - マイページに表示される商品からも商品詳細画面を開けるようになっています。
 - それに伴い、商品詳細画面（ show.blade.php ）では自分が出品した商品および購入済み商品は購入ボタンが表示されないようにしました。
 - 要件シートの基本設計書内にあるRegisterRequest.phpの内容につきましては、Fortifyの仕様に従い`App\Actions\Fortify\CreateNewUser` クラス内に実装しています。
+- メール認証機能を導入しました。

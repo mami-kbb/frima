@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\LoginResponse;
+use App\Http\Responses\LoginResponse as CustomLoginResponse;
 
 
 class FortifyServiceProvider extends ServiceProvider
@@ -24,7 +26,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(LoginResponse::class, CustomLoginResponse::class);
     }
 
     /**
@@ -47,5 +49,9 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(FortifyLoginRequest::class, LoginRequest::class);
+
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
+        });
     }
 }

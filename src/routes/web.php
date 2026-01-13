@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PurchaseController;
@@ -18,7 +19,16 @@ use App\Http\Controllers\PurchaseController;
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item_id}', [ItemController::class, 'show']);
 
-Route::middleware('auth')->group(function () {
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back();
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/mypage', [AuthController::class, 'index']);
     Route::get('/mypage/profile', [AuthController::class, 'edit']);
     Route::patch('/mypage/profile',[AuthController::class, 'update']);

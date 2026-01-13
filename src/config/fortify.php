@@ -79,6 +79,7 @@ return [
     'redirects' => [
         'login' => '/',
         'register' => '/mypage/profile',
+        'email-verification' => '/mypage/profile',
         'logout' => '/login',
     ],
     /*
@@ -151,6 +152,7 @@ return [
 
     'features' => [
         Features::registration(),
+        Features::emailVerification(),
         Features::resetPasswords(),
         // Features::emailVerification(),
         Features::updateProfileInformation(),
