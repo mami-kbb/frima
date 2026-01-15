@@ -16,9 +16,6 @@
 3. cp .env.example .env
 4. .env ファイルの一部を以下のように編集
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ Stripeの使用に伴い
-.env に STRIPE_KEY / STRIPE_SECRET を設定してください。
-
 ```
 DB_HOST=mysql
 DB_DATABASE=laravel_db
@@ -33,10 +30,45 @@ DB_PASSWORD=laravel_pass
 ## Stripe決済（テスト環境）
 
 Stripeを使用して決済機能を実装しています。
+現在はテスト環境のみ対応しています。
 
 ### インストール
 ```
 1. composer require stripe/stripe-php
+```
+
+### 環境変数設定
+
+`.env`ファイルに以下を設定してください。
+```env
+STRIPE_KEY=pk_test_xxxxxxxxxxxxx
+STRIPE_SECRET=sk_test_xxxxxxxxxxxxx
+```
+※ 各自のStripe アカウントのテスト用 API キーを設定してください。
+
+### 設定ファイル
+
+`config/services.php`に Stripe の設定を追加しています。
+```
+'stripe' => [
+    'key' => env('STRIPE_KEY'),
+    'secret' => env('STRIPE_SECRET'),
+],
+```
+
+### 決済の流れ
+1. 購入画面で支払い方法を選択
+2. 「購入する」ボタンを押下
+3. StripeのCheckout画面へ遷移
+4. 決済完了後、商品一覧画面へ遷移
+
+### テストカード情報
+- カード番号：4242 4242 4242 4242
+- 有効期限：任意の未来日
+- CVC：任意の3桁
+
+### 注意事項
+本番環境で利用する場合は、Stripeの本番用APIキーに切り替えてください。
 
 ## テスト環境構築
 
