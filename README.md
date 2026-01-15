@@ -16,6 +16,9 @@
 3. cp .env.example .env
 4. .env ファイルの一部を以下のように編集
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;※ Stripeの使用に伴い
+.env に STRIPE_KEY / STRIPE_SECRET を設定してください。
+
 ```
 DB_HOST=mysql
 DB_DATABASE=laravel_db
@@ -26,6 +29,14 @@ DB_PASSWORD=laravel_pass
 5. php artisan key:generate
 6. php artisan migrate
 7. php artisan db:seed
+
+## Stripe決済（テスト環境）
+
+Stripeを使用して決済機能を実装しています。
+
+### インストール
+```
+1. composer require stripe/stripe-php
 
 ## テスト環境構築
 
@@ -58,6 +69,7 @@ DB_PASSWORD=root
 - MySQL 8.0.26
 - PHP 8.1-fpm
 - Laravel 8
+- mailhog
 
 ## 開発環境
 

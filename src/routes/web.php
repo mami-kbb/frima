@@ -28,6 +28,11 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back();
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+Route::get('/purchase/success', [PurchaseController::class, 'success'])->name('purchase.success');
+Route::get('/purchase/cancel', function () {
+    return redirect('/');
+})->name('purchase.cancel');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/mypage', [AuthController::class, 'index']);
     Route::get('/mypage/profile', [AuthController::class, 'edit']);
@@ -35,6 +40,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/item/{id}/like', [ItemController::class, 'toggle']);
     Route::post('/item/{id}/comment', [ItemController::class, 'commentStore']);
     Route::get('/purchase/{item}', [PurchaseController::class, 'show']);
+    Route::post('/purchase/payment-method', function (Request $request) {
+        session(['payment_method' => $request->payment_method]);
+        return response()->json(['status' => 'ok']);
+    });
     Route::get('/purchase/address/{item}', [PurchaseController::class, 'editAddress']);
     Route::post('/purchase/address/{item}', [PurchaseController::class, 'updateAddress']);
     Route::post('/purchase/{item}', [PurchaseController::class, 'store']);

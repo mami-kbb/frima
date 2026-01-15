@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Order;
 use App\Http\Requests\AddressRequest;
+use Stripe\Stripe;
+use Stripe\Checkout\Session as CheckoutSession;
+use App\Services\PaymentService;
 
 class PurchaseController extends Controller
 {
@@ -44,10 +47,16 @@ class PurchaseController extends Controller
         return redirect("/purchase/{$item->id}");
     }
 
-    public function store(Request $request, Item $item)
+    public function store(Request $request, Item $item, PaymentService $paymentService)
     {
+        $paymentMethod = $request->payment_method ?? 'convenience';
+
+        if(!in_array($paymentMethod, ['card', 'convenience'])) {
+            abort(400);
+        }
+
         if (session()->has('purchase_address')) {
-            $address = session('purchase_address'); // 配列
+            $address = session('purchase_address');
         } else {
             $address = auth()->user()->profile->only([
                 'postal_code',
@@ -56,13 +65,52 @@ class PurchaseController extends Controller
             ]);
         }
 
-        $order = Order::create([
+        if ($paymentMethod === 'convenience') {
+            Order::create([
+                'item_id' => $item->id,
+                'buyer_id' => auth()->id(),
+                'postal_code' => $address['postal_code'],
+                'address' => $address['address'],
+                'building' => $address['building'],
+                'payment_method' => 'convenience',
+                'total_price' => $item->price,
+            ]);
+
+            $item->update(['status' => 1]);
+
+            session()->forget('purchase_address');
+        }
+
+        $checkoutUrl = $paymentService->createCheckoutSession($item,$paymentMethod);
+
+        return redirect($checkoutUrl);
+    }
+
+    public function success(Request $request)
+    {
+        $item = Item::findOrFail($request->query('item'));
+
+        if ($item->status === 1) {
+        return redirect('/');
+    }
+
+        if (session()->has('purchase_address')) {
+            $address = session('purchase_address');
+        } else {
+            $address = auth()->user()->profile->only([
+                'postal_code',
+                'address',
+                'building'
+            ]);
+        }
+
+        Order::create([
             'item_id' => $item->id,
             'buyer_id' => auth()->id(),
             'postal_code' => $address['postal_code'],
             'address' => $address['address'],
             'building' => $address['building'],
-            'payment_method' => $request->payment_method ?? 'convenience',
+            'payment_method' => 'card',
             'total_price' => $item->price,
         ]);
 

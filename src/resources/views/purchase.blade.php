@@ -64,38 +64,59 @@
 <script>
 const select = document.getElementById('paymentSelect');
 const selected = document.getElementById('selectedPayment');
-const options = document.querySelectorAll('.options li');
+const optionsBox = select.querySelector('.options');
+const options = optionsBox.querySelectorAll('li');
 const hiddenInput = document.getElementById('payment_method');
-const initialPayment = "{{ $payment_method }}";
+const paymentDisplay = document.getElementById('payment_display');
+
+const initialPayment = "{{ $payment_method ?? '' }}";
 
 if (initialPayment) {
-    const option = document.querySelector(
+    const initOption = document.querySelector(
         `.options li[data-value="${initialPayment}"]`
     );
-    if (option) {
+
+    if (initialPayment && initOption) {
         hiddenInput.value = initialPayment;
-        document.getElementById('payment_display').innerText = option.textContent;
+        paymentDisplay.textContent = initOption.textContent;
     }
 }
 
 select.addEventListener('click', () => {
     select.classList.toggle('open');
-    select.querySelector('.options').style.display = select.classList.contains('open') ? 'block' : 'none';
+    optionsBox.style.display = select.classList.contains('open')
+        ? 'block'
+        : 'none';
 });
 
 options.forEach(option => {
-    option.addEventListener('click', (e) => {
+    option.addEventListener('click', e => {
         e.stopPropagation();
 
-        selected.textContent = option.textContent;
-        hiddenInput.value = option.dataset.value;
+        const value = option.dataset.value;
+        const label = option.textContent;
+
+        selected.textContent = label;
+        hiddenInput.value = value;
+        paymentDisplay.textContent = label;
+
+        savePaymentMethod(value);
 
         select.classList.remove('open');
-        select.querySelector('.options').style.display = 'none';
-
-        document.getElementById('payment_display').innerText = option.textContent;
+        optionsBox.style.display = 'none';
     });
 });
+
+function savePaymentMethod(method) {
+    fetch('/purchase/payment-method', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+        },
+        body: JSON.stringify({ payment_method: method }),
+    });
+}
 </script>
 
 @endsection
