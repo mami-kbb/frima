@@ -14,7 +14,7 @@
         <div class="form__group">
             <div class="form__group-item">
                 <label for="email" class="form__group-label">メールアドレス</label>
-                <input type="email" class="form__group-input" name="email" value="{{ old('email') }}">
+                <input id="email" type="email" class="form__group-input" name="email" value="{{ old('email') }}">
             </div>
             <div class="form__error">
                 @error('email')
@@ -25,7 +25,7 @@
         <div class="form__group">
             <div class="form__group-item">
                 <label for="password" class="form__group-label">パスワード</label>
-                <input type="password" class="form__group-input" name="password" value="{{ old('password') }}">
+                <input id="password" type="password" class="form__group-input" name="password">
             </div>
             <div class="form__error">
                 @error('password')
@@ -45,6 +45,5 @@
     <div class="register__link">
         <a class="register__btn-submit" href="/register">会員登録はこちら</a>
     </div>
-    </form>
 </div>
 @endsection

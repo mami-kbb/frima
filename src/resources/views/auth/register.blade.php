@@ -14,7 +14,7 @@
         <div class="form__group">
             <div class="form__group-item">
                 <label for="name" class="form__group-label">ユーザー名</label>
-                <input type="text" class="form__group-input" name="name" value="{{ old('name') }}">
+                <input id="name" type="text" class="form__group-input" name="name" value="{{ old('name') }}">
             </div>
             <div class="form__error">
                 @error('name')
@@ -25,7 +25,7 @@
         <div class="form__group">
             <div class="form__group-item">
                 <label for="email" class="form__group-label">メールアドレス</label>
-                <input type="email" class="form__group-input" name="email" value="{{ old('email') }}">
+                <input id="email" type="email" class="form__group-input" name="email" value="{{ old('email') }}">
             </div>
             <div class="form__error">
                 @error('email')
@@ -36,7 +36,7 @@
         <div class="form__group">
             <div class="form__group-item">
                 <label for="password" class="form__group-label">パスワード</label>
-                <input type="password" class="form__group-input" name="password" value="{{ old('password') }}">
+                <input id="password" type="password" class="form__group-input" name="password">
             </div>
             <div class="form__error">
                 @error('password')
@@ -47,7 +47,7 @@
         <div class="form__group">
             <div class="form__group-item">
                 <label for="password_confirmation" class="form__group-label">確認用パスワード</label>
-                <input type="password" class="form__group-input" name="password_confirmation" value="{{ old('password_confirmation') }}">
+                <input id="password_confirmation" type="password" class="form__group-input" name="password_confirmation">
             </div>
             <div class="form__error">
                 @error('password')

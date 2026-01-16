@@ -26,19 +26,19 @@
                 <img src="{{ asset('storage/' . $profile->profile_image) }}" class="reader_image">
                 @endif
             </div>
-            <label for="profile_image" class="image-label">画像を選択する</label>
-            <input type="file" id="profile_image" class="image" name="profile_image" hidden>
-            @error('image')
-            <span class="error">
-                <p class="form__error">{{ $message }}</p>
-            </span>
-            @enderror
+            <div class="image-control">
+                <label for="profile_image" class="image-label">画像を選択する</label>
+                <input type="file" id="profile_image" class="image" name="profile_image" hidden>
+                @error('profile_image')
+                    <p class="form__error image-error">{{ $message }}</p>
+                @enderror
+            </div>
         </div>
         <div class="under-content">
             <div class="form__group">
                 <div class="form__group-item">
                     <label for="name" class="form__group-label">ユーザー名</label>
-                    <input type="text" class="form__group-input" name="name" value="{{ old('name', $user->name) }}">
+                    <input id="name" type="text" class="form__group-input" name="name" value="{{ old('name', $user->name) }}">
                 </div>
                 <div class="form__error">
                     @error('name')
@@ -49,7 +49,7 @@
             <div class="form__group">
                 <div class="form__group-item">
                     <label for="postal_code" class="form__group-label">郵便番号</label>
-                    <input type="text" class="form__group-input" name="postal_code" value="{{ old('postal_code', $profile->postal_code ?? '') }}">
+                    <input id="postal_code" type="text" class="form__group-input" name="postal_code" value="{{ old('postal_code', $profile->postal_code ?? '') }}">
                 </div>
                 <div class="form__error">
                     @error('postal_code')
@@ -60,7 +60,7 @@
             <div class="form__group">
                 <div class="form__group-item">
                     <label for="address" class="form__group-label">住所</label>
-                    <input type="text" class="form__group-input" name="address" value="{{ old('address', $profile->address ?? '') }}">
+                    <input id="address" type="text" class="form__group-input" name="address" value="{{ old('address', $profile->address ?? '') }}">
                 </div>
                 <div class="form__error">
                     @error('address')
@@ -71,7 +71,7 @@
             <div class="form__group">
                 <div class="form__group-item">
                     <label for="building" class="form__group-label">建物名</label>
-                    <input type="text" class="form__group-input" name="building" value="{{ old('building', $profile->building ?? '') }}">
+                    <input id="building" type="text" class="form__group-input" name="building" value="{{ old('building', $profile->building ?? '') }}">
                 </div>
             </div>
             <div class="form__btn">

@@ -6,9 +6,6 @@
 
 .profile-form__heading h2 {
     margin: 60px auto;
-}
-
-.profile-form__heading h2 {
     font-size: 36px;
     font-weight: bold;
 }
@@ -49,6 +46,16 @@
     color: #FF5555;
     font-size: 20px;
     cursor: pointer;
+}
+
+.image-control {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.image-error {
+    margin-top: 8px;
 }
 
 .under-content {

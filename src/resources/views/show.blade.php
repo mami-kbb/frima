@@ -84,7 +84,7 @@
                 @foreach ($item->comments as $comment)
                 <div class="comment-item">
                     <div class="comment-user-content">
-                        <img src="{{ asset('storage/'.$comment->user->profile->profile_image) }}" alt="ユーザーアイコン">
+                        <img src="{{ $comment->user->profile->profile_image_url }}" alt="ユーザーアイコン">
                         <p class="comment-user">{{ $comment->user->name }}</p>
                     </div>
                     <div class="comment-body">
@@ -97,7 +97,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="comment">商品へのコメント</label>
-                    <textarea name="comment" id="comment"></textarea>
+                    <textarea name="comment" id="comment">{{ old('comment') }}</textarea>
                     @error('comment')
                         <p class="form__error">{{ $message }}</p>
                     @enderror

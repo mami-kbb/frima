@@ -15,7 +15,7 @@
 @section('content')
 <div class="sell-content">
     <div class="sell-title">
-        <h3>商品の出品</h3>
+        <h2>商品の出品</h2>
     </div>
     <form action="/sell" class="sell-form" method="post" enctype="multipart/form-data" novalidate>
         @csrf
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="item-detail">
-            <h4>商品の詳細</h4>
+            <h3>商品の詳細</h3>
             <div class="category__group">
                 <label class="category__group-label">カテゴリー</label>
                 <div class="category-list">
@@ -68,10 +68,10 @@
             </div>
         </div>
         <div class="item-description">
-            <h4>商品名と説明</h4>
+            <h3>商品名と説明</h3>
             <div class="form__group">
-                <label class="form__group-label">商品名</label>
-                <input type="text" class="form-name__input" name="name" value="{{ old('name') }}">
+                <label for="name" class="form__group-label">商品名</label>
+                <input id="name" type="text" class="form-name__input" name="name" value="{{ old('name') }}">
                 <div class="form__error">
                     @error('name')
                     {{ $message }}
@@ -79,12 +79,12 @@
                 </div>
             </div>
             <div class="form__group">
-                <label class="form__group-label">ブランド名</label>
-                <input type="text" class="form-brand__input" name="brand_name" value="{{ old('brand_name') }}">
+                <label for="brand_name" class="form__group-label">ブランド名</label>
+                <input id ="brand_name" type="text" class="form-brand__input" name="brand_name" value="{{ old('brand_name') }}">
             </div>
             <div class="form__group">
                 <label class="form__group-label">商品の説明</label>
-                <textarea class="description" clos="30" row="5" name="description" id="description">{{ old('description') }}</textarea>
+                <textarea class="description" cols="30" rows="5" name="description" id="description">{{ old('description') }}</textarea>
                 <div class="form__error">
                     @error('description')
                     {{ $message }}
@@ -92,10 +92,10 @@
                 </div>
             </div>
             <div class="form__group">
-                <label class="form_group-label">販売価格</label>
+                <label for="price" class="form__group-label">販売価格</label>
                 <div class="price-input">
                     <span class="price-yen">&yen;</span>
-                    <input type="text" class="form-price__input" name="price" value="{{ old('price') }}">
+                    <input id="price" type="text" class="form-price__input" name="price" value="{{ old('price') }}">
                 </div>
                 <div class="form__error">
                     @error('price')

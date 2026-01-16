@@ -40,7 +40,7 @@ Stripeを使用して決済機能を実装しています。
 ### 環境変数設定
 
 `.env`ファイルに以下を設定してください。
-```env
+```
 STRIPE_KEY=pk_test_xxxxxxxxxxxxx
 STRIPE_SECRET=sk_test_xxxxxxxxxxxxx
 ```
@@ -102,6 +102,7 @@ DB_PASSWORD=root
 - PHP 8.1-fpm
 - Laravel 8
 - mailhog
+- Stripe
 
 ## 開発環境
 

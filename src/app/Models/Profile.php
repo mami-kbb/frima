@@ -14,4 +14,11 @@ class Profile extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function getProfileImageUrlAttribute()
+    {
+        return $this->profile_image
+            ? asset('storage/'.$this->profile_image)
+            : asset('images/default_user.png');
+    }
 }

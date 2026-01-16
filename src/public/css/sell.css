@@ -4,7 +4,7 @@
     align-items: center;
 }
 
-.sell-title h3 {
+.sell-title h2 {
     text-align: center;
     margin-top: 50px;
     font-size: 36px;
@@ -51,7 +51,7 @@
     cursor: pointer;
 }
 
-.item-detail h4, .item-description h4 {
+.item-detail h3, .item-description h3 {
     width: 100%;
     font-size: 30px;
     color: #5F5F5F;
