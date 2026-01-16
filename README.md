@@ -27,6 +27,20 @@ DB_PASSWORD=laravel_pass
 6. php artisan migrate
 7. php artisan db:seed
 
+## Mail 設定（開発環境）
+
+メール認証機能を利用するため、`.env` に以下を設定してください。
+
+```
+MAIL_MAILER=smtp
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+MAIL_FROM_ADDRESS=test@example.com
+MAIL_FROM_NAME="Flea Market App"
+```
+※ MailHog を使用しています
+※ ブラウザで http://localhost:8025にアクセスしてください
+
 ## Stripe決済（テスト環境）
 
 Stripeを使用して決済機能を実装しています。
