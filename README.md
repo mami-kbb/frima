@@ -26,6 +26,7 @@ DB_PASSWORD=laravel_pass
 5. php artisan key:generate
 6. php artisan migrate
 7. php artisan db:seed
+8. php artisan storage:link
 
 ## Mail 設定（開発環境）
 
@@ -48,7 +49,7 @@ Stripeを使用して決済機能を実装しています。
 
 ### インストール
 ```
-1. composer require stripe/stripe-php
+composer require stripe/stripe-php
 ```
 
 ### 環境変数設定
