@@ -39,8 +39,7 @@ MAIL_PORT=1025
 MAIL_FROM_ADDRESS=test@example.com
 MAIL_FROM_NAME="Flea Market App"
 ```
-※ MailHog を使用しています
-※ ブラウザで http://localhost:8025にアクセスしてください
+※ MailHog を使用しています。
 
 ## Stripe決済（テスト環境）
 
@@ -125,6 +124,7 @@ DB_PASSWORD=root
 - 会員登録画面: http://localhost/register
 - 商品一覧画面: http://localhost/
 - phpMyAdmin: http://localhost:8080/
+- mailhog: http://localhost:8025
 
 ## ER 図
 ![image](er.png)

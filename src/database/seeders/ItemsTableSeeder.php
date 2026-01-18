@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class ItemsTableSeeder extends Seeder
 {
@@ -14,6 +16,32 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
+        $disk = Storage::disk('public');
+
+    $disk->makeDirectory('images');
+
+    $images = [
+        'Clock.jpg',
+        'HDD.jpg',
+        'onion.jpg',
+        'Shoes.jpg',
+        'Notepc.jpg',
+        'Mic.jpg',
+        'Bag.jpg',
+        'Tumbler.jpg',
+        'Coffee_Grinder.jpg',
+        'Makeset.jpg',
+    ];
+
+    foreach ($images as $image) {
+        $source = resource_path('sample-images/' . $image);
+        $dest   = 'images/' . $image;
+
+        if (File::exists($source) && !$disk->exists($dest)) {
+            $disk->put($dest, File::get($source));
+        }
+    }
+
         DB::table('items')->insert([
             [
                 'user_id' => 1,
